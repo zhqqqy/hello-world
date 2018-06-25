@@ -1,4 +1,4 @@
-# hello-world
+# Proto
 Grpc exercise
 
 在hello-world文件夹下执行
