@@ -11,7 +11,7 @@ import (
 
 const (
 	address  = "localhost:50051"
-	defaultName = "world"
+	defaultName = "worldaaa"
 )
 
 type Config struct {
@@ -21,7 +21,7 @@ type Config struct {
 
 func main() {
 
-conn,err:=grpc.Dial("127.0.0.1:9876",grpc.WithInsecure())
+conn,err:=grpc.Dial(address,grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
