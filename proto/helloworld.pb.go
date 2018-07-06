@@ -34,6 +34,11 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 // The request message containing the user's name.
+// protobuf一共有三个字段修饰符：
+//  　　- required：该值是必须要设置的；
+//  　　- optional ：该字段可以有0个或1个值（不超过1个）；
+//  　　- repeated：该字段可以重复任意多次（包括0次），类似于C++中的list；
+//  使用建议：除非确定某个字段一定会被设值，否则使用optional代替required。
 type HelloRequest struct {
 	Name string `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
 }
@@ -86,6 +91,9 @@ type GreeterClient interface {
 	// Sends a greeting
 	//
 	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error)
+	// 服务器端流式 RPC
+	//
+	// 客户端发送请求到服务器，拿到一个流去读取返回的消息序列。客户端读取返回的流，直到里面没有任何消息。从例子中可以看出，通过在响应类型前插入 stream 关键字，可以指定一个服务器端的流方法
 	SayHello2(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (Greeter_SayHello2Client, error)
 }
 
@@ -144,6 +152,9 @@ type GreeterServer interface {
 	// Sends a greeting
 	//
 	SayHello(context.Context, *HelloRequest) (*HelloReply, error)
+	// 服务器端流式 RPC
+	//
+	// 客户端发送请求到服务器，拿到一个流去读取返回的消息序列。客户端读取返回的流，直到里面没有任何消息。从例子中可以看出，通过在响应类型前插入 stream 关键字，可以指定一个服务器端的流方法
 	SayHello2(*HelloRequest, Greeter_SayHello2Server) error
 }
 
