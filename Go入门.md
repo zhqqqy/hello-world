@@ -215,3 +215,52 @@ package fmt
 > - 还有自己项目中的包
 
 ![image-20190420153146725](/Users/zhaohq/Library/Application Support/typora-user-images/image-20190420153146725.png)
+
+## 四 、接口
+
+Go 语言中的接口概念和Java概念类似，都是定义了一组方法集合，但是这些方法集合仅仅只是被定义，它们没有在接口中实现。**接口(interface)类型**是Go语言的一种数据类型(可以理解成java中的object类型)。而因为所有的类型包括自定义类型都实现了空接口interface{}，所以空接口interface{}可以被当做任意类型的数值。
+
+例如：
+
+```go
+//定义一组接口
+type Reader interface {
+    Read(p []byte) (n int, err error)
+}
+type Writer interface {
+    Write(p []byte) (n int, err error)
+}
+//定义i为借口类型
+var i interface{} = 99 // i可以是任何类型
+i = 44.09
+i = "All"  // i 可接受任意类型的赋值
+```
+
+
+
+**Go语言借口的特点：**
+
+1. Go语言中接口是不需要显示实现的，这与java中实现接口需要使用implements不同，在go语言中只要对应的类型中所包含的方法有实现对应的接口中的方法，那么这个类型就是实现了这个接口。
+2. Go中的接口类型的空值是nil，但是要注意，**在底层，interface作为两个成员来实现，一个类型和一个值**
+
+```go
+type File struct { // ...
+}
+//File类型就实现了Read和Write两个接口,
+func (f *File) Read(buf []byte) (n int, err error){
+	return 10,nil
+}
+func (f *File) Write(buf []byte) (n int, err error){
+	 return 10,nil
+}
+func main(){
+    //将interface的类型设置为*interface{}
+     var val interface{} = (map[string]string)(nil)
+    if val==nil{
+        fmt.Println("val is nil")  
+    } else {  
+        fmt.Println("val is not nil")  
+    }  
+}
+```
+
