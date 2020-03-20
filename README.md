@@ -1,1 +1,1 @@
-[[![codecov](https://codecov.io/gh/youzan/nsq/branch/master/graph/badge.svg](https://coveralls.io/github/zhqqqy/hello-world)](https://coveralls.io/github/zhqqqy/hello-world?branch=gh-pages)
+[![codecov](https://coveralls.io/github/zhqqqy/hello-world/branch/gh-pages/badge.svg)](https://coveralls.io/github/zhqqqy/hello-world)
